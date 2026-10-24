@@ -155,3 +155,132 @@ Before submitting, confirm that:
 - `code.zip` includes your runnable code, `README.md`, `code/evaluation/evaluation_report.md`, and `code/evaluation/usage_report.md`;
 - `log.txt` follows the `AGENTS.md` turn format and is uploaded to the `chat_transcript` slot; and
 - no API keys, credentials, real personal data, or sensitive configuration values are included.
+
+---
+
+## Environment Setup (this solution)
+
+Requires Python 3.10+ (developed on 3.14). The pipeline uses the standard library plus `pypdf`; no API key is needed for local runs or tests.
+
+**Windows (PowerShell)**
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+**macOS / Linux**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+Tests and checks (all offline; no API key, no network). Run from the repository root with `.venv` active:
+
+```bash
+python -m unittest discover -s code           # 211 unit + dataset-integration tests
+python code/main.py coverage                  # parse-coverage over every evidence file (images are listed as needing a vision model)
+python code/main.py attribution               # account-attribution report for deletion_requests.csv (CONFIRMED / PROBABLE / AMBIGUOUS / NONE)
+python code/main.py validate-output FILE      # validate a CSV against the official output schema (add --full to require all 518 cases)
+python code/evaluation/main.py --self-check   # scorer sanity check against dataset/sample_output.csv
+python code/evaluation/main.py --baseline all-incomplete    # naive baseline floor on the 32 samples
+python code/evaluation/main.py --pred output.csv            # score a predictions CSV against the samples
+```
+
+Dataset-dependent tests are skipped automatically when `dataset/` is absent (it is not part of `code.zip`).
+
+**Project status: complete deterministic submission.** `python code/main.py run` writes `output.csv` for all 518 requests using only
+the local pipeline (no model, no network, no API key, strict audit cutoff) and validates it.
+
+```bash
+python code/main.py run                       # writes <repo root>/output.csv, then runs the independent checks
+python code/main.py run --case-order numeric  # same, rows in numeric case order (case_33 before case_100); default is plain string order
+python code/main.py check-output output.csv   # re-validate any output file against the dataset (schema, coverage, evidence IDs, cutoff)
+python code/evaluation/main.py --custom       # the participant-written evaluation cases
+python code/evaluation/make_reports.py        # regenerate code/evaluation/evaluation_report.md and usage_report.md from live measurements
+python code/main.py package                   # build and verify code.zip (README.md, requirements*.txt, code/; never dataset/, .env, caches, archives)
+python code/main.py package-trace --export <your /export file>   # after ending the session: assemble agent-trace.zip from the REAL session files
+python code/main.py verify-trace              # verify agent-trace.zip (JSONL validity, secrets, staleness vs the live session file)
+python code/main.py predict --samples --mismatches    # plan and score the 32 public samples, explaining every difference
+python code/main.py ambiguity-report          # aggregate: do ambiguous account candidates share a state?
+```
+
+Submission files: `output.csv` (repository root), `code.zip` (from `package`), `log.txt` (the chat transcript), and `agent-trace.zip`
+(from `package-trace`, per `agent_trace_instructions.md`). The reports are in `code/evaluation/`.
+
+**Row order.** The specification says rows are "sorted by `case_id`" without saying string or numeric order. Every organizer-produced file is in
+numeric order and IDs are zero-padded to two digits then unpadded, so `case_01`..`case_32` read the same either way but `case_100` sorts before
+`case_33` as a string. The checker accepts either order unless `--case-order` is given.
+
+### Rules the pipeline follows (and where the specification is silent)
+
+* **Admissibility.** A fact is usable for a case only if its *file* was captured at or before `audit_at` and its inner
+  record/line time (if any) is also at or before `audit_at`. A file captured after `audit_at` is inadmissible in full,
+  even if it contains an earlier-dated snapshot (strict reading of "never cite evidence captured after audit_at").
+  `StateConfig(admissibility="record")` trusts inner record times; it is a diagnostic only and is never used to cite.
+* **Ownership cutoff.** Default `strict`: a resource is tied to a person only by evidence/links captured at or before
+  `audit_at`. `link_only` (diagnostic, opt-in) lets later evidence reveal *who owns* a resource, never its state.
+* **State.** Latest admissible observation wins; observations older than 30 days before `audit_at` are stale; same-time
+  disagreement is a conflict resolved to the least compliant reading; a record on any replica node survives; an
+  enumerated, admissible, fresh snapshot that omits a resource proves absence only within its own system/collection
+  (JSON bundles only for subjects present in the file; retained categories never by silence). `reported_status` and
+  activity results are claims and never decide a state.
+* **Policy** is read from `deletion_rules.csv`; data flows (no CSV row) must be disabled; backups are retained with
+  restore blocked; tombstones keep only the stable reference.
+* **Not resolved by the specification (no steps are invented, a note is recorded):** a retained record that is missing, a
+  REDACT-category record that was deleted outright, an expired retention/legal-hold period, support messages whose PII
+  status cannot be told, whether support conversations always contain shared context, and what to do with an account that
+  cannot be attributed.
+
+### Screenshot evidence (optional, Gemini behind a feature flag)
+
+Eleven evidence files are PNG console screenshots that need a vision model. The integration is **off by default** and never
+required: unit tests, the deterministic pipeline and the fake client use no key and no network.
+
+```bash
+python code/main.py vision-preflight                      # offline: what would be sent, token/cost estimate, config, SDK/key presence
+python code/main.py vision-inspect --fake code/evaluation/screenshot_transcriptions.json   # fake client, no network
+python code/main.py vision-compare --fake code/evaluation/screenshot_transcriptions.json   # pipeline disabled vs fake-enabled
+# real calls (NOT run by default; need explicit approval): all three opt-ins are required
+#   python -m pip install -r requirements-gemini.txt
+#   export GHOST_AUDIT_VISION=gemini GEMINI_API_KEY=...     # key from the environment only; never printed or logged
+#   python code/main.py vision-run --approve-real-calls --out vision_interpretations.json
+```
+
+Contract: a vision step only *transcribes* what is visible (text, identifiers, displayed times, rows, possible links). It never supplies
+evidence IDs, states, policy actions or step order; provenance comes from the manifest. A link is *supported* only when the resource and the
+subject are visibly in the same row/panel and the quote contains both; filenames, headers and proximity are hypotheses, and a screen that
+shows no resource ID (or only a file name) establishes nothing. A screenshot may be used only if its **manifest capture time** is at or
+before `audit_at`; a *row* that itself displays a later time is excluded for earlier audits (a page that displays times later than its
+manifest time is flagged, not discarded). Screens that list many unrelated events (audit explorers) only contribute rows that a catalog
+link row also names. A screenshot that contradicts an existing link (shows a different, unresolvable subject for the same resource)
+*disputes* it and the resource is not asserted.
+
+**What the submitted run uses.** The real Gemini attempt failed (HTTP 404), so `python code/main.py run` (default `--screenshots transcribed`)
+reads `code/evaluation/screenshot_transcriptions.json`: a transcription of the 11 PNGs made by the coding agent (Claude Code, claude-sonnet-5-5)
+reading them by eye during development. Each entry stores the SHA-256 of its PNG (a mismatch is refused) and goes through the same validator as
+a model response. `--screenshots none` ignores screenshots entirely. See `code/evaluation/screenshot_inspection.md` and the limits stated in
+`code/evaluation/evaluation_report.md`.
+
+### Code layout (`code/ghost_audit/`)
+
+| Module | Role |
+| --- | --- |
+| `loaders.py`, `models.py`, `paths.py`, `timeutil.py` | CSV loading, data classes, repo-relative paths, UTC timestamps |
+| `extractors/` | One extractor per evidence format (handover text, JSON, SQL snapshots, six log dialects, PDF via `pypdf`) producing normalized `Fact`s and `Scope`s |
+| `text_ids.py`, `identity.py` | Exact-token, case-insensitive identifier matching; current + historical identity resolution |
+| `owners.py` | Evidence-confirmed resource-owner map and explicit `LINK_RESOURCE_IDENTITY` links, with audit-cutoff-aware queries |
+| `attribution.py` | Account attribution (confirmed / probable / ambiguous); never chooses among ambiguous candidates |
+| `intent_hints.py` | Corroborating non-deletion signals (not the final NOT_APPLICABLE decision) |
+| `intent.py` | Deterministic multilingual classifier: deletion vs access/export, correction, login help, marketing opt-out |
+| `observations.py`, `state.py` | Normalize facts into resource-state observations; reconstruct each resource's state at `audit_at` |
+| `policy.py` | `deletion_rules.csv` as explicit, testable logic (assessments, final-state verification) |
+| `planner.py`, `pipeline.py`, `report.py` | Ordered findings / remediation / verification, status decision, orchestration, mismatch and ambiguity reports |
+| `coverage.py`, `schema.py`, `scoring.py`, `context.py` | Parse-coverage check, official output-schema validator, local scorer and naive baselines, context assembly |
+
+**Optional Gemini integration.** Disabled by default. If enabled later, set `GEMINI_API_KEY` in the environment (or an uncommitted `.env`) and install the optional package listed in `requirements.txt`. Keys are never stored in the repository.
+
+`.venv/`, `.env`, caches, `code.zip` and `agent-trace*` are git-ignored.

@@ -1,0 +1,5 @@
+# Optional: Gemini screenshot interpretation. Install only if you intend to enable it:
+#     python -m pip install -r requirements-gemini.txt
+# Disabled by default. A real request additionally needs GHOST_AUDIT_VISION=gemini, GEMINI_API_KEY (environment only)
+# and the --approve-real-calls flag. Unit tests, the deterministic pipeline and the fake client never import this SDK.
+google-genai>=1,<2

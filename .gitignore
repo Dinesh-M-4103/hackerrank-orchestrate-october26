@@ -1,0 +1,25 @@
+# Python environment and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Secrets and local configuration
+.env
+.env.*
+*.key
+*.pem
+
+# Generated / temporary artifacts
+code/.cache/
+.cache/
+*.tmp
+*.log.tmp
+code.zip
+agent-trace/
+agent-trace.zip
+.DS_Store
+vision_interpretations.json

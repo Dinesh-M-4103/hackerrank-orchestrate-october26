@@ -1,0 +1,1046 @@
+{
+ "_provenance": {
+  "what": "Transcription of the 11 PNG console screenshots in dataset/evidence/images: directly visible text, identifiers, displayed times, rows and possible links, in the same structured shape the optional Gemini interpreter returns.",
+  "how": "Read by eye from the PNG files by the coding agent (Claude Code, model claude-sonnet-5-5) during development, each image viewed twice and compared. NOT produced by any runtime model call, OCR, or the failed Gemini attempt. Nothing was taken from golden labels or sample answers.",
+  "integrity": "Each entry records the SHA-256 of the PNG it describes. The loader refuses an entry whose image bytes differ.",
+  "validation": "Entries pass through the same schema validator as model output: identifiers must have the right shape, a link is supported only when the resource and subject are visibly in the same row/panel and the quote contains both, and model-supplied evidence IDs, states or actions would be discarded. Provenance (file_id, path, capture time) always comes from evidence_files.csv.",
+  "limits": "A transcription can contain reading mistakes. Several screens display times later than their manifest capture time; this is flagged, and admissibility uses the manifest time plus each row's own displayed time (see code/evaluation/screenshot_inspection.md)."
+ },
+ "screenshots": {
+  "evidence_04": {
+   "file": "evidence/images/account_admin_console_20260926.png",
+   "sha256": "d5c32ca5b6e1a2b4bbe9f5d41835ef1fd5d4f7061dab9067a4f9f88cea3c1861",
+   "response": {
+    "readable": true,
+    "application": "Customer Operations",
+    "page_title": "Haruka Sato",
+    "visible_text_lines": [
+     "Haruka Sato",
+     "user_11 · account_5762",
+     "Email haruka.s1838@zoho.com",
+     "Phone +81 90 7610 2507",
+     "Last contact 24 Sep 2026 09:14 JST",
+     "Support CS-8538 · support_9538"
+    ],
+    "identifiers": {
+     "resource_ids": [
+      "account_5762",
+      "support_9538"
+     ],
+     "emails": [
+      "haruka.s1838@zoho.com"
+     ],
+     "user_refs": [
+      "user_11"
+     ],
+     "phones": [
+      "+81 90 7610 2507"
+     ],
+     "reference_codes": [
+      "CS-8538",
+      "ORD-20265762",
+      "ORD-20265518"
+     ]
+    },
+    "displayed_times": [
+     {
+      "text": "24 Sep 2026 09:14 JST",
+      "meaning": "last contact"
+     },
+     {
+      "text": "12 Sep 2026",
+      "meaning": "order date"
+     },
+     {
+      "text": "28 Aug",
+      "meaning": "support created"
+     },
+     {
+      "text": "12 Jan 2024",
+      "meaning": "member since"
+     }
+    ],
+    "rows": [
+     {
+      "text": "user_11 · account_5762 | Email haruka.s1838@zoho.com | Phone +81 90 7610 2507",
+      "resource_ids": [
+       "account_5762"
+      ],
+      "emails": [
+       "haruka.s1838@zoho.com"
+      ],
+      "user_refs": [
+       "user_11"
+      ],
+      "phones": [
+       "+81 90 7610 2507"
+      ],
+      "status_text": "Silver"
+     },
+     {
+      "text": "Support CS-8538 · support_9538",
+      "resource_ids": [
+       "support_9538"
+      ],
+      "emails": [],
+      "user_refs": [],
+      "phones": [],
+      "status_text": ""
+     }
+    ],
+    "possible_links": [
+     {
+      "resource_id": "account_5762",
+      "subject": "user_11",
+      "basis": "same_panel",
+      "quote": "user_11 · account_5762"
+     },
+     {
+      "resource_id": "account_5762",
+      "subject": "haruka.s1838@zoho.com",
+      "basis": "same_panel",
+      "quote": "user_11 · account_5762 | Email haruka.s1838@zoho.com"
+     },
+     {
+      "resource_id": "support_9538",
+      "subject": "user_11",
+      "basis": "proximity",
+      "quote": "Support CS-8538 · support_9538 (customer panel)"
+     }
+    ],
+    "confidence": 0.93,
+    "ambiguities": [],
+    "rationale": "Customer overview for Haruka Sato showing user_11, account_5762 and contact details; support_9538 is listed in the details panel without its own subject."
+   }
+  },
+  "evidence_09": {
+   "file": "evidence/images/search_index_inspector_20260901.png",
+   "sha256": "75afdb0ae53a4510c83399a70d88073cb4fb2747454095756e4ddad1a8c70605",
+   "response": {
+    "readable": true,
+    "application": "Search Console",
+    "page_title": "Customer Search",
+    "visible_text_lines": [
+     "email:g.silva76@gmail.com 2 hits",
+     "search_428 Gabriel Silva g.silva76@gmail.com user_13",
+     "search_1874 — g.silva76.jr@gmail.com —",
+     "Executed 01 Sep 2026 06:00:14 UTC",
+     "indexed_at 2026-09-01T05:58:21Z"
+    ],
+    "identifiers": {
+     "resource_ids": [
+      "search_428",
+      "search_1874"
+     ],
+     "emails": [
+      "g.silva76@gmail.com",
+      "g.silva76.jr@gmail.com"
+     ],
+     "user_refs": [
+      "user_13"
+     ],
+     "phones": [],
+     "reference_codes": []
+    },
+    "displayed_times": [
+     {
+      "text": "01 Sep 2026 06:00:14 UTC",
+      "meaning": "query executed"
+     },
+     {
+      "text": "2026-09-01T05:58:21Z",
+      "meaning": "indexed_at of search_428"
+     }
+    ],
+    "rows": [
+     {
+      "text": "search_428 | Gabriel Silva | g.silva76@gmail.com | user_13 | 9.84 | 05:58:21 UTC",
+      "resource_ids": [
+       "search_428"
+      ],
+      "emails": [
+       "g.silva76@gmail.com"
+      ],
+      "user_refs": [
+       "user_13"
+      ],
+      "phones": [],
+      "status_text": "hit"
+     },
+     {
+      "text": "search_1874 | — | g.silva76.jr@gmail.com | — | 4.12 | 05:55:03 UTC",
+      "resource_ids": [
+       "search_1874"
+      ],
+      "emails": [
+       "g.silva76.jr@gmail.com"
+      ],
+      "user_refs": [],
+      "phones": [],
+      "status_text": "hit"
+     }
+    ],
+    "possible_links": [
+     {
+      "resource_id": "search_428",
+      "subject": "g.silva76@gmail.com",
+      "basis": "same_row",
+      "quote": "search_428 | Gabriel Silva | g.silva76@gmail.com | user_13"
+     },
+     {
+      "resource_id": "search_428",
+      "subject": "user_13",
+      "basis": "same_row",
+      "quote": "search_428 | Gabriel Silva | g.silva76@gmail.com | user_13"
+     },
+     {
+      "resource_id": "search_1874",
+      "subject": "g.silva76.jr@gmail.com",
+      "basis": "same_row",
+      "quote": "search_1874 | — | g.silva76.jr@gmail.com"
+     }
+    ],
+    "confidence": 0.93,
+    "ambiguities": [],
+    "rationale": "Two search hits: search_428 for g.silva76@gmail.com (user_13) and a look-alike address g.silva76.jr@gmail.com with no customer reference."
+   }
+  },
+  "evidence_14": {
+   "file": "evidence/images/connector_management_console_20260807.png",
+   "sha256": "e81fabc93ea1b5f4c918d934cdb2bea05d61737adfcc29f281494f5d8ec46355",
+   "response": {
+    "readable": true,
+    "application": "BridgeOps",
+    "page_title": "Connections",
+    "visible_text_lines": [
+     "PRODUCTION · eu-west · 07 Aug 2026 08:00 UTC",
+     "data_flow_1121 customer_analytics_warehouse jain.aditi@gmail.com Continuous",
+     "data_flow_9846 customer_analytics_warehouse lucia-torres@gmail.com Continuous",
+     "Status Healthy · Sync mode Continuous sync"
+    ],
+    "identifiers": {
+     "resource_ids": [
+      "data_flow_1121",
+      "data_flow_9846"
+     ],
+     "emails": [
+      "jain.aditi@gmail.com",
+      "lucia-torres@gmail.com"
+     ],
+     "user_refs": [],
+     "phones": [],
+     "reference_codes": []
+    },
+    "displayed_times": [
+     {
+      "text": "07 Aug 2026 08:00 UTC",
+      "meaning": "page header time"
+     },
+     {
+      "text": "07:59:42",
+      "meaning": "last contact"
+     }
+    ],
+    "rows": [
+     {
+      "text": "data_flow_1121 | customer_analytics_warehouse | jain.aditi@gmail.com | Continuous | 1,284 | 07:59:42",
+      "resource_ids": [
+       "data_flow_1121"
+      ],
+      "emails": [
+       "jain.aditi@gmail.com"
+      ],
+      "user_refs": [],
+      "phones": [],
+      "status_text": "Continuous Healthy"
+     },
+     {
+      "text": "data_flow_9846 | customer_analytics_warehouse | lucia-torres@gmail.com | Continuous | 842 | 07:59:36",
+      "resource_ids": [
+       "data_flow_9846"
+      ],
+      "emails": [
+       "lucia-torres@gmail.com"
+      ],
+      "user_refs": [],
+      "phones": [],
+      "status_text": "Continuous"
+     },
+     {
+      "text": "Order notifications | notification_service | order events | Continuous",
+      "resource_ids": [],
+      "emails": [],
+      "user_refs": [],
+      "phones": [],
+      "status_text": ""
+     },
+     {
+      "text": "Delivery tracking | logistics_warehouse | shipment events | Continuous",
+      "resource_ids": [],
+      "emails": [],
+      "user_refs": [],
+      "phones": [],
+      "status_text": ""
+     }
+    ],
+    "possible_links": [
+     {
+      "resource_id": "data_flow_1121",
+      "subject": "jain.aditi@gmail.com",
+      "basis": "same_row",
+      "quote": "data_flow_1121 | customer_analytics_warehouse | jain.aditi@gmail.com"
+     },
+     {
+      "resource_id": "data_flow_9846",
+      "subject": "lucia-torres@gmail.com",
+      "basis": "same_row",
+      "quote": "data_flow_9846 | customer_analytics_warehouse | lucia-torres@gmail.com"
+     }
+    ],
+    "confidence": 0.93,
+    "ambiguities": [],
+    "rationale": "Connector topology; two person-specific flows are shown continuously syncing to the analytics warehouse."
+   }
+  },
+  "evidence_19": {
+   "file": "evidence/images/analytics_profile_view_20260713.png",
+   "sha256": "4e4cb259bc2010b622b0c53fe5872258f994fefc23452a83bb27473758693484",
+   "response": {
+    "readable": true,
+    "application": "Pulse Analytics",
+    "page_title": "Omar Darwish",
+    "visible_text_lines": [
+     "Omar Darwish",
+     "user_20 · analytics_7438 · darwish.omar@icloud.com",
+     "Last activity 13 Jul 2026 14:22 UTC",
+     "First seen 21 Apr 2026 09:14 UTC"
+    ],
+    "identifiers": {
+     "resource_ids": [
+      "analytics_7438"
+     ],
+     "emails": [
+      "darwish.omar@icloud.com"
+     ],
+     "user_refs": [
+      "user_20"
+     ],
+     "phones": [],
+     "reference_codes": []
+    },
+    "displayed_times": [
+     {
+      "text": "13 Jul 2026 14:22 UTC",
+      "meaning": "last activity"
+     },
+     {
+      "text": "21 Apr 2026 09:14 UTC",
+      "meaning": "first seen"
+     },
+     {
+      "text": "08 Jul",
+      "meaning": "order completed"
+     }
+    ],
+    "rows": [
+     {
+      "text": "Omar Darwish | user_20 · analytics_7438 · darwish.omar@icloud.com",
+      "resource_ids": [
+       "analytics_7438"
+      ],
+      "emails": [
+       "darwish.omar@icloud.com"
+      ],
+      "user_refs": [
+       "user_20"
+      ],
+      "phones": [],
+      "status_text": "Last 90 days"
+     }
+    ],
+    "possible_links": [
+     {
+      "resource_id": "analytics_7438",
+      "subject": "darwish.omar@icloud.com",
+      "basis": "same_panel",
+      "quote": "user_20 · analytics_7438 · darwish.omar@icloud.com"
+     },
+     {
+      "resource_id": "analytics_7438",
+      "subject": "user_20",
+      "basis": "same_panel",
+      "quote": "user_20 · analytics_7438 · darwish.omar@icloud.com"
+     }
+    ],
+    "confidence": 0.93,
+    "ambiguities": [],
+    "rationale": "An analytics user profile that still shows the person's name, user reference, e-mail and event timeline."
+   }
+  },
+  "evidence_23": {
+   "file": "evidence/images/customer_export_console_20260618.png",
+   "sha256": "18b95c1bd8b8956e40216df935498a9f3c181ea2a69b5cd6d3c0841a816d5557",
+   "response": {
+    "readable": true,
+    "application": "Customer Download Center",
+    "page_title": "Data exports",
+    "visible_text_lines": [
+     "export_1260 ingrid.dahl@outlook.com Ready 18 Jun 06:42 UTC",
+     "export_1261 marcus.lee@northstar.shop Collecting 20 Jun 14:18 UTC",
+     "Expires 25 Jun 2026 06:42 UTC"
+    ],
+    "identifiers": {
+     "resource_ids": [
+      "export_1261",
+      "export_1260",
+      "export_1259",
+      "export_1258"
+     ],
+     "emails": [
+      "marcus.lee@northstar.shop",
+      "ingrid.dahl@outlook.com",
+      "sara.kim@northstar.shop",
+      "daniel.park@northstar.shop"
+     ],
+     "user_refs": [],
+     "phones": [],
+     "reference_codes": []
+    },
+    "displayed_times": [
+     {
+      "text": "18 Jun 2026 06:42 UTC",
+      "meaning": "export_1260 created"
+     },
+     {
+      "text": "20 Jun 14:18 UTC",
+      "meaning": "export_1261 created"
+     },
+     {
+      "text": "17 Jun 11:03",
+      "meaning": "export_1259 created"
+     },
+     {
+      "text": "16 Jun 09:27",
+      "meaning": "export_1258 created"
+     },
+     {
+      "text": "25 Jun 2026 06:42 UTC",
+      "meaning": "export_1260 expires"
+     }
+    ],
+    "rows": [
+     {
+      "text": "export_1261 | customer_export_1261.zip | marcus.lee@northstar.shop | Collecting | 20 Jun 14:18 UTC",
+      "resource_ids": [
+       "export_1261"
+      ],
+      "emails": [
+       "marcus.lee@northstar.shop"
+      ],
+      "user_refs": [],
+      "phones": [],
+      "status_text": "Collecting"
+     },
+     {
+      "text": "export_1260 | customer_export_1260.zip | ingrid.dahl@outlook.com | Ready | 18 Jun 06:42 UTC",
+      "resource_ids": [
+       "export_1260"
+      ],
+      "emails": [
+       "ingrid.dahl@outlook.com"
+      ],
+      "user_refs": [],
+      "phones": [],
+      "status_text": "Ready"
+     },
+     {
+      "text": "export_1259 | customer_export_1259.zip | sara.kim@northstar.shop | Packaging",
+      "resource_ids": [
+       "export_1259"
+      ],
+      "emails": [
+       "sara.kim@northstar.shop"
+      ],
+      "user_refs": [],
+      "phones": [],
+      "status_text": "Packaging"
+     },
+     {
+      "text": "export_1258 | customer_export_1258.zip | daniel.park@northstar.shop | Ready",
+      "resource_ids": [
+       "export_1258"
+      ],
+      "emails": [
+       "daniel.park@northstar.shop"
+      ],
+      "user_refs": [],
+      "phones": [],
+      "status_text": "Ready"
+     }
+    ],
+    "possible_links": [
+     {
+      "resource_id": "export_1260",
+      "subject": "ingrid.dahl@outlook.com",
+      "basis": "same_row",
+      "quote": "export_1260 | customer_export_1260.zip | ingrid.dahl@outlook.com | Ready"
+     },
+     {
+      "resource_id": "export_1261",
+      "subject": "marcus.lee@northstar.shop",
+      "basis": "same_row",
+      "quote": "export_1261 | customer_export_1261.zip | marcus.lee@northstar.shop"
+     },
+     {
+      "resource_id": "export_1259",
+      "subject": "sara.kim@northstar.shop",
+      "basis": "same_row",
+      "quote": "export_1259 | customer_export_1259.zip | sara.kim@northstar.shop"
+     },
+     {
+      "resource_id": "export_1258",
+      "subject": "daniel.park@northstar.shop",
+      "basis": "same_row",
+      "quote": "export_1258 | customer_export_1258.zip | daniel.park@northstar.shop"
+     }
+    ],
+    "confidence": 0.9,
+    "ambiguities": [
+     "the newest row is dated 20 Jun although the file is catalogued as captured 18 Jun"
+    ],
+    "rationale": "Export console listing four export jobs; export_1260 is Ready and owned by ingrid.dahl@outlook.com."
+   }
+  },
+  "evidence_28": {
+   "file": "evidence/images/support_ticket_console_20260524.png",
+   "sha256": "542b7aec17e6b2f38827896e7eb52c70e4bfaaca22433621be1f80f54884e944",
+   "response": {
+    "readable": true,
+    "application": "Helpline Console",
+    "page_title": "CS-5034 · Where is my delivery?",
+    "visible_text_lines": [
+     "support_1034 · Kofi Agyeman · Normal priority",
+     "Email kagyeman8947@fastmail.com",
+     "24 May 07:46 Reached regional hub",
+     "24 May 08:15 In transit"
+    ],
+    "identifiers": {
+     "resource_ids": [
+      "support_1034"
+     ],
+     "emails": [
+      "kagyeman8947@fastmail.com"
+     ],
+     "user_refs": [],
+     "phones": [],
+     "reference_codes": [
+      "CS-5034",
+      "ORD-20265034"
+     ]
+    },
+    "displayed_times": [
+     {
+      "text": "24 May 07:46",
+      "meaning": "reached regional hub"
+     },
+     {
+      "text": "24 May 08:15",
+      "meaning": "in transit"
+     },
+     {
+      "text": "22 May",
+      "meaning": "order confirmed"
+     },
+     {
+      "text": "26 May 2026",
+      "meaning": "delivery expected"
+     }
+    ],
+    "rows": [
+     {
+      "text": "support_1034 · Kofi Agyeman · Normal priority | Email kagyeman8947@fastmail.com",
+      "resource_ids": [
+       "support_1034"
+      ],
+      "emails": [
+       "kagyeman8947@fastmail.com"
+      ],
+      "user_refs": [],
+      "phones": [],
+      "status_text": "Normal priority"
+     }
+    ],
+    "possible_links": [
+     {
+      "resource_id": "support_1034",
+      "subject": "kagyeman8947@fastmail.com",
+      "basis": "same_panel",
+      "quote": "support_1034 · Kofi Agyeman · Normal priority | Email kagyeman8947@fastmail.com"
+     }
+    ],
+    "confidence": 0.93,
+    "ambiguities": [],
+    "rationale": "A support conversation whose header names support_1034 and shows the requester's name and e-mail."
+   }
+  },
+  "evidence_32": {
+   "file": "evidence/images/backup_restore_console_20260429.png",
+   "sha256": "2c246aa5843bec609b9ddfdf1154cd81e0fd61996f83954735e9856e48c18bf3",
+   "response": {
+    "readable": true,
+    "application": "Vault Recovery Manager",
+    "page_title": "Customer-platform archives",
+    "visible_text_lines": [
+     "backup_9287 areed1433@gmail.com eu-west-1 26 Apr 02:00 Archive",
+     "Retention end 26 Jul 2026"
+    ],
+    "identifiers": {
+     "resource_ids": [
+      "backup_9291",
+      "backup_9288",
+      "backup_9287",
+      "backup_9286"
+     ],
+     "emails": [
+      "bluepeakco@outlook.com",
+      "miller.logistics@company.com",
+      "areed1433@gmail.com",
+      "summit-retail@company.com"
+     ],
+     "user_refs": [],
+     "phones": [],
+     "reference_codes": []
+    },
+    "displayed_times": [
+     {
+      "text": "26 Apr 2026 02:00 UTC",
+      "meaning": "archive created"
+     },
+     {
+      "text": "29 Mar 2026",
+      "meaning": "last drill"
+     },
+     {
+      "text": "26 Jul 2026",
+      "meaning": "retention end"
+     }
+    ],
+    "rows": [
+     {
+      "text": "backup_9291 | bluepeakco@outlook.com | ap-southeast-1 | Archive",
+      "resource_ids": [
+       "backup_9291"
+      ],
+      "emails": [
+       "bluepeakco@outlook.com"
+      ],
+      "user_refs": [],
+      "phones": [],
+      "status_text": "Archive"
+     },
+     {
+      "text": "backup_9288 | miller.logistics@company.com | us-west-2 | Archive",
+      "resource_ids": [
+       "backup_9288"
+      ],
+      "emails": [
+       "miller.logistics@company.com"
+      ],
+      "user_refs": [],
+      "phones": [],
+      "status_text": "Archive"
+     },
+     {
+      "text": "backup_9287 | areed1433@gmail.com | eu-west-1 | 26 Apr 02:00 | Archive",
+      "resource_ids": [
+       "backup_9287"
+      ],
+      "emails": [
+       "areed1433@gmail.com"
+      ],
+      "user_refs": [],
+      "phones": [],
+      "status_text": "Archive"
+     },
+     {
+      "text": "backup_9286 | summit-retail@company.com | us-east-1 | Archive",
+      "resource_ids": [
+       "backup_9286"
+      ],
+      "emails": [
+       "summit-retail@company.com"
+      ],
+      "user_refs": [],
+      "phones": [],
+      "status_text": "Archive"
+     }
+    ],
+    "possible_links": [
+     {
+      "resource_id": "backup_9287",
+      "subject": "areed1433@gmail.com",
+      "basis": "same_row",
+      "quote": "backup_9287 | areed1433@gmail.com | eu-west-1 | 26 Apr 02:00 | Archive"
+     },
+     {
+      "resource_id": "backup_9291",
+      "subject": "bluepeakco@outlook.com",
+      "basis": "same_row",
+      "quote": "backup_9291 | bluepeakco@outlook.com | ap-southeast-1 | Archive"
+     }
+    ],
+    "confidence": 0.93,
+    "ambiguities": [],
+    "rationale": "Backup archive listing; no restore-permission field is visible, only tier, region, encryption and retention end."
+   }
+  },
+  "evidence_37": {
+   "file": "evidence/images/security_audit_explorer_20260905.png",
+   "sha256": "ca59f693f4e7002466b3fdeaf1bb6763618770963dd811b60003772d07b4b03b",
+   "response": {
+    "readable": true,
+    "application": "Sentinel",
+    "page_title": "Account events",
+    "visible_text_lines": [
+     "Subject filter: user_03 · 18-26 Aug 2026 UTC",
+     "audit_record_003 Raw event subject user_03 recorded_at 2026-08-25T04:03:00Z"
+    ],
+    "identifiers": {
+     "resource_ids": [
+      "audit_record_003",
+      "audit_record_002",
+      "audit_record_001",
+      "audit_record_006",
+      "audit_record_005",
+      "audit_record_004"
+     ],
+     "emails": [],
+     "user_refs": [
+      "user_03"
+     ],
+     "phones": [],
+     "reference_codes": []
+    },
+    "displayed_times": [
+     {
+      "text": "18-26 Aug 2026 UTC",
+      "meaning": "filter range"
+     },
+     {
+      "text": "2026-08-25T04:03:00Z",
+      "meaning": "recorded_at of audit_record_003"
+     }
+    ],
+    "rows": [
+     {
+      "text": "25 Aug 04:03 | Account closure recorded | Account lifecycle | user_03 | Valid | audit_record_003",
+      "resource_ids": [
+       "audit_record_003"
+      ],
+      "emails": [],
+      "user_refs": [
+       "user_03"
+      ],
+      "phones": [],
+      "status_text": "Valid"
+     },
+     {
+      "text": "25 Aug 03:21 | Session revoked | Session management | user_03 | Valid | audit_record_002",
+      "resource_ids": [
+       "audit_record_002"
+      ],
+      "emails": [],
+      "user_refs": [
+       "user_03"
+      ],
+      "phones": [],
+      "status_text": "Valid"
+     },
+     {
+      "text": "24 Aug 16:14 | Recovery challenge completed | Authentication | user_03 | Valid | audit_record_001",
+      "resource_ids": [
+       "audit_record_001"
+      ],
+      "emails": [],
+      "user_refs": [
+       "user_03"
+      ],
+      "phones": [],
+      "status_text": "Valid"
+     },
+     {
+      "text": "22 Aug 11:27 | Email change confirmed | Profile update | user_03 | Valid | audit_record_006",
+      "resource_ids": [
+       "audit_record_006"
+      ],
+      "emails": [],
+      "user_refs": [
+       "user_03"
+      ],
+      "phones": [],
+      "status_text": "Valid"
+     },
+     {
+      "text": "20 Aug 09:42 | Login from new device | Authentication | user_03 | Valid | audit_record_005",
+      "resource_ids": [
+       "audit_record_005"
+      ],
+      "emails": [],
+      "user_refs": [
+       "user_03"
+      ],
+      "phones": [],
+      "status_text": "Valid"
+     },
+     {
+      "text": "18 Aug 14:05 | Password changed | Authentication | user_03 | Valid | audit_record_004",
+      "resource_ids": [
+       "audit_record_004"
+      ],
+      "emails": [],
+      "user_refs": [
+       "user_03"
+      ],
+      "phones": [],
+      "status_text": "Valid"
+     }
+    ],
+    "possible_links": [
+     {
+      "resource_id": "audit_record_003",
+      "subject": "user_03",
+      "basis": "same_row",
+      "quote": "25 Aug 04:03 | Account closure recorded | Account lifecycle | user_03 | Valid | audit_record_003"
+     },
+     {
+      "resource_id": "audit_record_002",
+      "subject": "user_03",
+      "basis": "same_row",
+      "quote": "25 Aug 03:21 | Session revoked | Session management | user_03 | Valid | audit_record_002"
+     },
+     {
+      "resource_id": "audit_record_001",
+      "subject": "user_03",
+      "basis": "same_row",
+      "quote": "24 Aug 16:14 | Recovery challenge completed | Authentication | user_03 | Valid | audit_record_001"
+     },
+     {
+      "resource_id": "audit_record_006",
+      "subject": "user_03",
+      "basis": "same_row",
+      "quote": "22 Aug 11:27 | Email change confirmed | Profile update | user_03 | Valid | audit_record_006"
+     },
+     {
+      "resource_id": "audit_record_005",
+      "subject": "user_03",
+      "basis": "same_row",
+      "quote": "20 Aug 09:42 | Login from new device | Authentication | user_03 | Valid | audit_record_005"
+     },
+     {
+      "resource_id": "audit_record_004",
+      "subject": "user_03",
+      "basis": "same_row",
+      "quote": "18 Aug 14:05 | Password changed | Authentication | user_03 | Valid | audit_record_004"
+     }
+    ],
+    "confidence": 0.93,
+    "ambiguities": [],
+    "rationale": "Six signed account events for user_03; audit_record_003 is the account closure."
+   }
+  },
+  "evidence_42": {
+   "file": "evidence/images/deleted_account_reference_20260310.png",
+   "sha256": "68c28a72afd6ed184d5990d15c543f8a516face204f0360f732755a8a63c28be",
+   "response": {
+    "readable": true,
+    "application": "Customer Reference Registry",
+    "page_title": "user_17",
+    "visible_text_lines": [
+     "user_17 Retained reference",
+     "Customer key · Account Platform · eu-west",
+     "ORD-20263245 · CS-3245 · CS-3378 · FIN-7742",
+     "Most recent update 10 Mar 2026 07:18 UTC"
+    ],
+    "identifiers": {
+     "resource_ids": [],
+     "emails": [],
+     "user_refs": [
+      "user_17"
+     ],
+     "phones": [],
+     "reference_codes": [
+      "ORD-20263245",
+      "CS-3245",
+      "CS-3378",
+      "FIN-7742"
+     ]
+    },
+    "displayed_times": [
+     {
+      "text": "10 Mar 2026 07:18 UTC",
+      "meaning": "most recent update"
+     },
+     {
+      "text": "11 Jan 2024 08:42 UTC",
+      "meaning": "created"
+     }
+    ],
+    "rows": [
+     {
+      "text": "Orders | ORD-20263245 | Linked to customer | Active",
+      "resource_ids": [],
+      "emails": [],
+      "user_refs": [],
+      "phones": [],
+      "status_text": ""
+     },
+     {
+      "text": "Support | CS-3245 | Linked to customer | Active",
+      "resource_ids": [],
+      "emails": [],
+      "user_refs": [],
+      "phones": [],
+      "status_text": ""
+     },
+     {
+      "text": "Support | CS-3378 | Linked to customer | Active",
+      "resource_ids": [],
+      "emails": [],
+      "user_refs": [],
+      "phones": [],
+      "status_text": ""
+     },
+     {
+      "text": "Finance | FIN-7742 | Linked to customer | Active",
+      "resource_ids": [],
+      "emails": [],
+      "user_refs": [],
+      "phones": [],
+      "status_text": ""
+     }
+    ],
+    "possible_links": [],
+    "confidence": 0.9,
+    "ambiguities": [
+     "the page shows the reference user_17 but no resource ID such as tombstone_17"
+    ],
+    "rationale": "A retained customer reference with linked order/support/finance references and no personal identifiers."
+   }
+  },
+  "evidence_46": {
+   "file": "evidence/images/object_storage_browser_20260213.png",
+   "sha256": "96e9a191380c29b9e0ab997007268c4cd6353cb6721ebd1ed4a32599d8d37e04",
+   "response": {
+    "readable": true,
+    "application": "Nimbus Object Storage",
+    "page_title": "northstar-customer-data",
+    "visible_text_lines": [
+     "Captured 13 Feb 2026 08:00 UTC",
+     "delivery_confirmation_19.pdf 684 KB v3 12 Feb 18:42",
+     "Uploader support-service"
+    ],
+    "identifiers": {
+     "resource_ids": [],
+     "emails": [],
+     "user_refs": [],
+     "phones": [],
+     "reference_codes": []
+    },
+    "displayed_times": [
+     {
+      "text": "13 Feb 2026 08:00 UTC",
+      "meaning": "captured"
+     },
+     {
+      "text": "12 Feb 2026 18:42 UTC",
+      "meaning": "delivery_confirmation_19.pdf modified"
+     }
+    ],
+    "rows": [
+     {
+      "text": "delivery_confirmation_19.pdf | 684 KB | 12 Feb 18:42 | Standard | v3",
+      "resource_ids": [],
+      "emails": [],
+      "user_refs": [],
+      "phones": [],
+      "status_text": ""
+     },
+     {
+      "text": "delivery_confirmation_20.pdf | 712 KB | 11 Feb 14:17 | Standard | v1",
+      "resource_ids": [],
+      "emails": [],
+      "user_refs": [],
+      "phones": [],
+      "status_text": ""
+     }
+    ],
+    "possible_links": [],
+    "confidence": 0.9,
+    "ambiguities": [
+     "object listing shows file names only; no resource ID or owner is visible"
+    ],
+    "rationale": "A bucket listing of support attachments; no person identifier is shown."
+   }
+  },
+  "evidence_60": {
+   "file": "evidence/images/marketing_profile_console.png",
+   "sha256": "51fa0e6a38f8fa3629ba1b0d0b90b4ed139715956b97bfd09a6f1a6232c15df5",
+   "response": {
+    "readable": true,
+    "application": "Audience Operations",
+    "page_title": "Soo-jin Park",
+    "visible_text_lines": [
+     "marketing_001 · sj.park@naver.com · +82 10-5837-9451",
+     "Email opt-in Yes · SMS opt-in No",
+     "Last refreshed 15 Sep 2026 23:40 UTC"
+    ],
+    "identifiers": {
+     "resource_ids": [
+      "marketing_001"
+     ],
+     "emails": [
+      "sj.park@naver.com"
+     ],
+     "user_refs": [],
+     "phones": [
+      "+82 10-5837-9451"
+     ],
+     "reference_codes": []
+    },
+    "displayed_times": [
+     {
+      "text": "15 Sep 2026 23:40 UTC",
+      "meaning": "last refreshed"
+     }
+    ],
+    "rows": [
+     {
+      "text": "Soo-jin Park | marketing_001 · sj.park@naver.com · +82 10-5837-9451 | Live",
+      "resource_ids": [
+       "marketing_001"
+      ],
+      "emails": [
+       "sj.park@naver.com"
+      ],
+      "user_refs": [],
+      "phones": [
+       "+82 10-5837-9451"
+      ],
+      "status_text": "Live"
+     }
+    ],
+    "possible_links": [
+     {
+      "resource_id": "marketing_001",
+      "subject": "sj.park@naver.com",
+      "basis": "same_panel",
+      "quote": "marketing_001 · sj.park@naver.com · +82 10-5837-9451"
+     }
+    ],
+    "confidence": 0.93,
+    "ambiguities": [],
+    "rationale": "A live marketing profile for Soo-jin Park with e-mail opt-in."
+   }
+  }
+ }
+}

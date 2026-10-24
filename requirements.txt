@@ -1,0 +1,5 @@
+# Runtime dependencies (the rest of the pipeline uses only the standard library).
+# pypdf: pure-Python PDF text extraction for dataset/evidence/documents/*.pdf
+pypdf>=5,<7
+
+# Optional Gemini screenshot interpretation (off by default): see requirements-gemini.txt
